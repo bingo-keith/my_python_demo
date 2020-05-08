@@ -19,4 +19,3 @@ print(os.path.split('/数据事业部/districtScore/zwb_py_test/1.calc.py'))
 print([x for x in os.listdir('.') if os.path.isdir(x)])
 
 print([x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1] == '.ipynb'])
-

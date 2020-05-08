@@ -7,8 +7,9 @@ def is_odd(n):
 
 print(list(filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15])))  # [1, 5, 9, 15]
 
+
 def not_empty(s):
-    return s  and s.strip()
+    return s and s.strip()
 
 
 print(list(filter(not_empty, ['A', '', 'B', None, 'C', ' '])))  # ['A', 'B', 'C']
@@ -40,6 +41,5 @@ for n in primes():
         print(n)
     else:
         break
-
 
 # filter()的作用是从一个序列中筛出符合条件的元素。由于filter()使用了惰性计算，所以只有在取filter()结果的时候，才会真正筛选并每次返回下一个筛出的元素。

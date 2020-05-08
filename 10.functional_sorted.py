@@ -21,5 +21,4 @@ print(sorted(L, key=by_name))
 
 print(L[1][0])
 
-
 # sorted()也是一个高阶函数。用sorted()排序的关键在于实现一个映射函数

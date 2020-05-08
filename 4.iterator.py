@@ -14,15 +14,15 @@ for k, v in d.items():
 print(isinstance(d, Iterable))
 
 
-def findMinAndMax(L):
-    min = L[0]
-    max = L[0]
-    for value in L:
-        if (min > value):
-            min = value
-        if (max < value):
-            max = value
-    return min, max
+def find_min_and_max(L):
+    s_min = L[0]
+    s_max = L[0]
+    for val in L:
+        if s_min > val:
+            s_min = val
+        if s_max < val:
+            s_max = val
+    return s_min, s_max
 
 
-print(findMinAndMax([1, 2, 3, 8, 0, 4, 5, 6]))
+print(find_min_and_max([1, 2, 3, 8, 0, 4, 5, 6]))

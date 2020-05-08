@@ -48,6 +48,7 @@ def count1():
 f11, f22, f33 = count1()
 print(f11(), f22(), f33())  # 1 4 9
 
+
 # 闭包、作用域
 def create_counter():
     global i
@@ -63,6 +64,5 @@ def create_counter():
 
 counterA = create_counter()
 print(counterA(), counterA(), counterA(), counterA())
-
 
 # 返回一个函数时，牢记该函数并未执行，返回函数中不要引用任何可能会变化的变量
