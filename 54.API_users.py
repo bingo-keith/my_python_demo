@@ -43,24 +43,36 @@ def add():
         'name': request.form['name'],
         'age': request.form['age']
     }
-    # 下面一行有bug，待修复
-    if user in users['list']:
-        return '不能重复新增'
-    if user is not None:
-        users['list'].append(user)
+    for item in users['list']:
+        if item['name'] == user['name']:
+            return '不能重复新增'
+    users['list'].append(user)
     return user
 
 
-# @app.route('delete', methods=['DELETE'])
-# def delete():
-#     print(request)
-#     return 'delete'
-#
-#
-# @app.route('update', methods=['PUT'])
-# def update():
-#     print(request)
-#     return 'update'
+@app.route('/delete', methods=['DELETE'])
+def delete():
+    print(request.form['id'])
+    user = {}
+    for item in users['list']:
+        if item['id'] == int(request.form['id']):
+            user = item
+    if not user:
+        return '查无此人'
+    else:
+        users['list'].remove(user)
+    return user
+
+
+@app.route('/update', methods=['PUT'])
+def update():
+    print(request.form.to_dict())
+    user = request.form.to_dict()
+    for item in users['list']:
+        if item['id'] == int(user['id']):
+            item['name'] = user['name']
+            item['age'] = user['age']
+    return users
 
 
 if __name__ == '__main__':
