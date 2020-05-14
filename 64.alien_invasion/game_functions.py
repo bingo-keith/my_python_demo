@@ -234,6 +234,7 @@ def ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets):
         stats.game_active = False
         pygame.mouse.set_visible(True)
 
+
 def check_high_score(stats, sb):
     """检查是否诞生了新的最高得分"""
     if stats.score > stats.high_score:
