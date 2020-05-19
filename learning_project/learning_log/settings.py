@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 我的应用程序
-    'learning_logs'
+    'learning_logs',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# TODO 我的设置 这个URL有问题，为什么要拼%5E，待解决
+LOGIN_URL = '/%5Eusers/login/'

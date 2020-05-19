@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -11,13 +12,15 @@ def index(request):
     return render(request, 'learning_logs/index.html')
 
 
+@login_required
 def topics(request):
     """显示所有的主题"""
-    topics = Topic.objects.order_by('date_added')
-    context = {'topics': topics}
+    topics1 = Topic.objects.order_by('date_added')
+    context = {'topics': topics1}
     return render(request, 'learning_logs/topics.html', context)
 
 
+@login_required
 def topic(request, topic_id):
     """显示单个主题及其所有的条目"""
     topic = Topic.objects.get(id=topic_id)
@@ -26,6 +29,7 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 
+@login_required
 def new_topic(request):
     """添加新主题"""
     if request.method != 'POST':
@@ -41,6 +45,7 @@ def new_topic(request):
     return render(request, 'learning_logs/new_topic.html', context)
 
 
+@login_required
 def new_entry(request, topic_id):
     """在特定的主题中添加新条目"""
     topic = Topic.objects.get(id=topic_id)
@@ -60,6 +65,7 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 
 
+@login_required
 def edit_entry(request, entry_id):
     """编辑既有条目"""
     entry = Entry.objects.get(id=entry_id)
@@ -77,4 +83,3 @@ def edit_entry(request, entry_id):
 
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
-
