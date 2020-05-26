@@ -91,7 +91,7 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# database_host = '192.168.186.129'
-# database_port = 27017
-# database_db_name = 'douban'
-# database_db_collection = 'douban_movie'
+# MYSQL_HOST = '192.168.186.129'
+# MYSQL_PORT = 27017
+# MYSQL_DB_NAME = 'douban'
+# MYSQL_DB_COLLECTION = 'douban_movie'
