@@ -10,6 +10,17 @@ print('%.1f' % (72 / 85))
 classmates = ['test1', 'test2', 'test3', 'test4']
 print(classmates[len(classmates) - 1] == classmates[-1])
 
+res = {}
+
+
+def test(**kwargs):
+    for k, v in kwargs.items():
+        res['test %s' % k] = 'value %s' % v
+    return res
+
+
+print(test(**{'a': 1, 'b': 2, 'c': 3}))
+
 L = ['Bart', 'Lisa', 'Adam']
 for x in L:
     print('Hello,', x)
