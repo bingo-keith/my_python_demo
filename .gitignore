@@ -1,0 +1,6 @@
+senv
+.ipynb_checkpoints
+__pycache__
+.idea
+zenv
+venv
