@@ -10,24 +10,24 @@ app = Flask(__name__)
 conn = connect(user='root', password='root', database='db_xueya_edu')
 cursor = conn.cursor()
 
-cursor.execute('select * from xueya_users')
+cursor.execute('select * from xueya_users where is_deleted="N"')
 data = cursor.fetchall()
 jsonData = []
 for row in data:
     res = {
-       'nickname': row[0],
-       'idCard': row[1],
-       'age': row[2],
-       'profession': row[3],
-       'address': row[4],
-       'password': row[5],
-       'avator': row[6],
-       'wechat': row[7],
-       'qq': row[8],
-       'phone': row[9],
-       'child_age': row[10],
-       'message': row[11],
-       'email': row[12]
+       'nickname': row[1],
+       'idCard': row[2],
+       'age': row[3],
+       'profession': row[4],
+       'address': row[5],
+       'password': row[6],
+       'avator': row[7],
+       'wechat': row[8],
+       'qq': row[9],
+       'phone': row[10],
+       'child_age': row[11],
+       'message': row[12],
+       'email': row[13]
     }
     jsonData.append(res)
 
