@@ -1,21 +1,41 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from mysql.connector import connect
 
 
 class Users:
     def __init__(self, **kwargs):
+        self.formData = {}
         for k, v in kwargs.items():
-            self[k] = v
-        # self.u_nickname = kwargs.u_nickname
-        # self.u_id_card = kwargs.u_id_card
-        # self.u_age = kwargs.u_age
-        # self.u_profession = kwargs.u_profession
-        # self.u_address = kwargs.u_address
-        # self.u_password = kwargs.u_password
-        # self.u_avator = kwargs.u_avator
-        # self.u_wechat = kwargs.u_wechat
-        # self.u_qq = kwargs.u_qq
-        # self.u_phone = kwargs.u_phone
-        # self.u_child_age = kwargs.u_child_age
-        # self.u_message = kwargs.u_message
-        # self.u_email = kwargs.u_email
+            self.formData[k] = v
+        self.conn = connect(user='root', password='root', database='db_xueya_edu')
+        self.cursor = self.conn.cursor()
+
+    def get_all_users(self):
+        self.cursor.execute('SELECT * FROM xueya_users')
+        data = self.cursor.fetchall()
+        self.conn.commit()
+        self.db_close()
+        return data
+
+    def model_set_new_users(self, new_user):
+        sql = '''INSERT INTO xueya_users
+                VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'''
+        self.cursor.execute(sql, list(new_user))
+        self.conn.commit()
+        self.db_close()
+
+    def model_get_id_by_account_name(self, new_user):
+        sql = 'SELECT u_id FROM xueya_users WHERE u_account_name = "%s"' % new_user[1]
+        self.cursor.execute(sql)
+        uid = self.cursor.fetchone()
+        self.conn.commit()
+        self.db_close()
+        return uid[0]
+
+    def db_close(self):
+        # 关闭数据库
+        self.cursor.close()
+        self.conn.close()
+
+
