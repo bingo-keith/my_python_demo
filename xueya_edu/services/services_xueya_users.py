@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from models.m_xueya_users import User
+from models.model_xueya_users import User
 
 user = User()
 

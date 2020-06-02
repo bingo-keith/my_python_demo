@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import jsonify, Blueprint, request
 from json import dumps
-from services.s_xueya_users import get_all_users, get_users, set_new_user
+from services.services_xueya_users import get_all_users, get_users, set_new_user
 
 # 注册蓝图
 r_users = Blueprint('users', __name__)

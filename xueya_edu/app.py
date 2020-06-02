@@ -5,11 +5,9 @@ import sys
 sys.path.append('.')
 
 from flask import Flask
-from models.m_xueya_users import User
-from routes.r_xueya_users import r_users
+from routes.routes_xueya_users import r_users
 
 app = Flask(__name__)
-user = User()
 
 # app给蓝图注册路由
 app.register_blueprint(r_users)
