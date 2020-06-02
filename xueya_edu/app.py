@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import sys
+sys.path.append('.')
+
 from flask import Flask
 from models.m_xueya_users import User
 from routes.r_xueya_users import r_users
