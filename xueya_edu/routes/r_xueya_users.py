@@ -41,6 +41,6 @@ def set_user_info():
         'u_email': form_data['email'],
         'is_deleted': 'N'
     }
-    user.set_new_users(tuple(form_data.values()))
+    user.set_new_user(tuple(form_data.values()))
     uid = user.get_id_by_account_name(tuple(form_data.values()))
     return dumps(uid)

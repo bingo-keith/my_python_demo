@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from mysql.connector import connect
+from config import user, password, database
 
 
 def db_close():
@@ -12,6 +13,6 @@ def db_close():
 
 def db_conn():
     # 连接数据库
-    conn = connect(user='root', password='root', database='db_xueya_edu')
+    conn = connect(user=user, password=password, database=database)
     cursor = conn.cursor()
     return conn, cursor
