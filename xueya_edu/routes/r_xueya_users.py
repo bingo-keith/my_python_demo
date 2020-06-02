@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 from flask import jsonify, Blueprint, request
 from json import dumps
-from models.m_xueya_users import User
-from services.s_xueya_users import get_all_users, get_users
+from services.s_xueya_users import get_all_users, get_users, set_new_user
 
-user = User()
 # 注册蓝图
 r_users = Blueprint('users', __name__)
 
@@ -41,6 +39,4 @@ def set_user_info():
         'u_email': form_data['email'],
         'is_deleted': 'N'
     }
-    user.set_new_user(tuple(form_data.values()))
-    uid = user.get_id_by_account_name(tuple(form_data.values()))
-    return dumps(uid)
+    return dumps(set_new_user(tuple(form_data.values())))

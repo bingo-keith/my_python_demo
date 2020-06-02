@@ -12,7 +12,11 @@ def db_close():
 
 
 def db_conn():
-    # 连接数据库
-    conn = connect(user=user, password=password, database=database)
-    cursor = conn.cursor()
-    return conn, cursor
+    try:
+        # 连接数据库
+        conn = connect(user=user, password=password, database=database)
+        cursor = conn.cursor()
+        return conn, cursor
+    except Exception as e:
+        print('发生异常：%s' % Exception)
+        raise e
