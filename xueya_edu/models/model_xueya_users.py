@@ -49,4 +49,19 @@ class User:
             db_close()
         return uid[0]
 
+    def get_favorites_by_user(self, user):
+        try:
+            sql = 'SELECT a.* FROM xueya_articles AS a, xueya_favorite__article AS f, xueya_users AS u ' \
+                  'WHERE a.a_id = f.a_id AND f.u_id = u.u_id AND u.u_account_name = "%s"' % user['u_account_name']
+            self.cursor.execute(sql)
+            favorites = self.cursor.fetchall()
+            self.conn.commit()
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
+        return favorites
+
+
+
 
