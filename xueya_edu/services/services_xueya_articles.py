@@ -18,11 +18,12 @@ def get_all_articles():
                 'content': row[3],
                 'author': row[4],
                 'keywords': row[5],
-                'readedNum': row[6],
-                'favoritesNum': row[7],
-                'sharedNum': row[8],
-                'thumbNum': row[9],
-                'isDeleted': row[10]
+                'stars': row[6],
+                'readedNum': row[7],
+                'favoritesNum': row[8],
+                'sharedNum': row[9],
+                'thumbNum': row[10],
+                'isDeleted': row[11]
             }
             res['comments'] = get_comments_by_article_id(res)
             json_data.append(res)
