@@ -12,6 +12,7 @@ def get_all_users():
         json_data = []
         for row in all_users:
             res = {
+                'id': row[0],
                 'account_name': row[1],
                 'nickname': row[2],
                 'idCard': row[3],
