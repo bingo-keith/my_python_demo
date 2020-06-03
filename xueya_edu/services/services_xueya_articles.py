@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from models.model_xueya_articles import Article
+import time
 
 article = Article()
 
@@ -43,7 +44,7 @@ def get_comments_by_article_id(articles):
                 'content': row[2],
                 'author': row[3],
                 'thumbNum': row[4],
-                'created': row[5],
+                'created': int(time.mktime(time.strptime(str(row[5]), "%Y-%m-%d %H:%M:%S"))) * 1000,
                 'isDeleted': row[6]
             }
             json_data.append(res)
