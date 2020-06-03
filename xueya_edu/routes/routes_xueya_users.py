@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import jsonify, Blueprint, request
 from json import dumps
-from services.services_xueya_users import get_all_users, get_users, set_new_user
+from services.services_xueya_users import get_all_users, get_users, set_new_user, delete_user
 
 # 注册蓝图
 r_users = Blueprint('users', __name__)
@@ -40,3 +40,8 @@ def set_user_info():
         'is_deleted': 'N'
     }
     return dumps(set_new_user(tuple(form_data.values())))
+
+
+@r_users.route('/delUser/', methods=['DELETE'])
+def delete_user_info():
+    return delete_user(dict(request.form))

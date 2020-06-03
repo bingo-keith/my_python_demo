@@ -51,8 +51,9 @@ class User:
 
     def get_favorites_by_user(self, user):
         try:
-            sql = 'SELECT a.* FROM xueya_articles AS a, xueya_favorite__article AS f, xueya_users AS u ' \
-                  'WHERE a.a_id = f.a_id AND f.u_id = u.u_id AND u.u_account_name = "%s"' % user['u_account_name']
+            sql = 'SELECT a.* FROM xueya_articles AS a, xueya_favorite__article AS f,' \
+                  'xueya_users AS u WHERE a.a_id = f.a_id AND f.u_id = u.u_id AND' \
+                  'u.u_account_name = "%s"' % user['u_account_name']
             self.cursor.execute(sql)
             favorites = self.cursor.fetchall()
             self.conn.commit()
@@ -62,6 +63,15 @@ class User:
             db_close()
         return favorites
 
-
+    def delete_user(self, id_dict):
+        try:
+            sql = 'DELETE FROM xueya_users WHERE u_id=%s' % id_dict['id']
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return id_dict['id']
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
 
 

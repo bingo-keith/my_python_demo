@@ -47,3 +47,10 @@ def set_new_user(new_user):
         return uid
     except Exception as e:
         raise e
+
+
+def delete_user(id_dict):
+    try:
+        return user.delete_user(id_dict)
+    except Exception as e:
+        raise e
