@@ -9,11 +9,11 @@ from services.services_xueya_articles import get_all_articles, get_comments_by_a
 r_articles = Blueprint('articles', __name__)
 
 
-@r_articles.route('/getAllArticles/', methods=['GET'])
+@r_articles.route('/api/v1/getAllArticles/', methods=['GET'])
 def get_articles():
     return jsonify(get_all_articles())
 
 
-@r_articles.route('/getCommentsById/', methods=['GET'])
+@r_articles.route('/api/v1/getCommentsById/', methods=['GET'])
 def get_comments_by_id():
     return jsonify(get_comments_by_article_id(dict(request.args)))

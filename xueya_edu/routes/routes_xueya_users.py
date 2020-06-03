@@ -8,17 +8,17 @@ from services.services_xueya_users import get_all_users, get_users, set_new_user
 r_users = Blueprint('users', __name__)
 
 
-@r_users.route('/getAllUsers/', methods=['GET', 'POST'])
+@r_users.route('/api/v1/getAllUsers/', methods=['GET', 'POST'])
 def get_all_user_info():
     return jsonify(get_all_users())
 
 
-@r_users.route('/getUsers/', methods=['GET', 'POST'])
+@r_users.route('/api/v1/getUsers/', methods=['GET', 'POST'])
 def get_user_info():
     return jsonify(list(get_users()))
 
 
-@r_users.route('/addNewUser/', methods=['POST'])
+@r_users.route('/api/v1/addNewUser/', methods=['POST'])
 def set_user_info():
     form_data = dict(request.form)
     form_data = {
@@ -42,6 +42,6 @@ def set_user_info():
     return dumps(set_new_user(tuple(form_data.values())))
 
 
-@r_users.route('/delUserById/', methods=['DELETE'])
+@r_users.route('/api/v1/delUserById/', methods=['DELETE'])
 def delete_user_info():
     return delete_user(dict(request.form))

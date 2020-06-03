@@ -24,6 +24,7 @@ def get_all_articles():
                 'thumbNum': row[9],
                 'isDeleted': row[10]
             }
+            res['comment'] = get_comments_by_article_id(res)
             json_data.append(res)
         return json_data
     except Exception as e:
@@ -33,7 +34,6 @@ def get_all_articles():
 def get_comments_by_article_id(articles):
     try:
         comments = article.get_comments_by_aid(articles['id'])
-        print(comments)
         json_data = []
         for row in comments:
             res = {
