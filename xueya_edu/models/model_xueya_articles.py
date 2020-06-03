@@ -48,3 +48,19 @@ class Article:
         finally:
             db_close()
 
+    def get_articles_by_keyword(self, keyword):
+        try:
+            sql = '''SELECT * FROM xueya_articles WHERE
+                    a_category LIKE "%%%s%%"
+                OR a_title LIKE "%%%s%%"
+                OR a_content LIKE "%%%s%%"
+                OR a_keywords LIKE "%%%s%%" 
+            ''' % (keyword, keyword, keyword, keyword)
+            self.cursor.execute(sql)
+            data = self.cursor.fetchall()
+            self.conn.commit()
+            return data
+        except Exception as e:
+            raise e
+        finally:
+            db_close()

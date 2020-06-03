@@ -51,3 +51,29 @@ def get_comments_by_article_id(articles):
         return json_data
     except Exception as e:
         raise e
+
+
+def get_articles_by_keywords(keyword):
+    try:
+        articles = article.get_articles_by_keyword(keyword['value'])
+        json_data = []
+        for row in articles:
+            res = {
+                'id': row[0],
+                'title': row[1],
+                'category': row[2],
+                'content': row[3],
+                'author': row[4],
+                'keywords': row[5],
+                'stars': row[6],
+                'readedNum': row[7],
+                'favoritesNum': row[8],
+                'sharedNum': row[9],
+                'thumbNum': row[10],
+                'isDeleted': row[11]
+            }
+            res['comments'] = get_comments_by_article_id(res)
+            json_data.append(res)
+        return json_data
+    except Exception as e:
+        raise e
