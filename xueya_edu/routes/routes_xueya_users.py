@@ -42,6 +42,6 @@ def set_user_info():
     return dumps(set_new_user(tuple(form_data.values())))
 
 
-@r_users.route('/delUser/', methods=['DELETE'])
+@r_users.route('/delUserById/', methods=['DELETE'])
 def delete_user_info():
     return delete_user(dict(request.form))

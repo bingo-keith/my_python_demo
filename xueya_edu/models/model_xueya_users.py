@@ -63,9 +63,10 @@ class User:
             db_close()
         return favorites
 
-    def delete_user(self, id_dict):
+    def delete_user_by_uid(self, id_dict):
         try:
-            sql = 'DELETE FROM xueya_users WHERE u_id=%s' % id_dict['id']
+            # sql = 'DELETE FROM xueya_users WHERE u_id=%s' % id_dict['id']
+            sql = 'UPDATE xueya_users SET is_deleted="Y" WHERE u_id="%s"' % id_dict['id']
             self.cursor.execute(sql)
             self.conn.commit()
             return id_dict['id']

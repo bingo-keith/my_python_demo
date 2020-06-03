@@ -51,6 +51,6 @@ def set_new_user(new_user):
 
 def delete_user(id_dict):
     try:
-        return user.delete_user(id_dict)
+        return user.delete_user_by_uid(id_dict)
     except Exception as e:
         raise e
