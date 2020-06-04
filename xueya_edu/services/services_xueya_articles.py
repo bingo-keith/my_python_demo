@@ -77,3 +77,36 @@ def get_articles_by_keywords(keyword):
         return json_data
     except Exception as e:
         raise e
+
+
+def get_article_by_id(aid):
+    try:
+        articles = article.get_articles_by_id(aid)
+        res = {
+            'id': articles[0],
+            'title': articles[1],
+            'category': articles[2],
+            'content': articles[3],
+            'author': articles[4],
+            'keywords': articles[5],
+            'stars': articles[6],
+            'readedNum': articles[7],
+            'favoritesNum': articles[8],
+            'sharedNum': articles[9],
+            'thumbNum': articles[10],
+            'isDeleted': articles[11]
+        }
+        res['comments'] = get_comments_by_article_id(res)
+        return res
+    except Exception as e:
+        raise e
+
+
+def set_comments(comments):
+    try:
+        return article.set_articles_comments(comments)
+    except Exception as e:
+        raise e
+
+
+

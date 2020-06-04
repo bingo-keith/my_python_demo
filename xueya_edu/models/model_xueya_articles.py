@@ -48,6 +48,7 @@ class Article:
         finally:
             db_close()
 
+    '''没有用到'''
     def get_articles_by_keyword(self, keyword):
         try:
             sql = '''SELECT * FROM xueya_articles WHERE
@@ -64,3 +65,39 @@ class Article:
             raise e
         finally:
             db_close()
+
+    def set_articles_comments(self, comments):
+        try:
+            sql = 'INSERT INTO xueya_comments VALUES(%s, %s, %s, %s, %s, %s, %s)'
+            self.cursor.execute(sql, (None, None, comments['content'], comments['author'], 0, None, 'N'))
+            self.conn.commit()
+            last_id = self.cursor.lastrowid
+            sql2 = 'INSERT INTO xueya_articles__comments VALUES(NULL, %s, %s);' % (comments['id'], last_id)
+            self.cursor.execute(sql2)
+            self.conn.commit()
+            return last_id
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
+
+    def get_articles_by_id(self, aid):
+        try:
+            sql = 'SELECT * FROM xueya_articles WHERE a_id = %s' % aid
+            self.cursor.execute(sql)
+            data = self.cursor.fetchone()
+            self.conn.commit()
+            # sql2 = 'SELECT c.* FROM xueya_comments as c, xueya_articles__comments as ac WHERE c.c_id = ac.ac_id ' \
+            #        'AND ac. a_id = %s' % aid
+            # self.cursor.execute(sql2)
+            # comments = self.cursor.fetchall()
+            # self.conn.commit()
+            # data['comments'] = comments
+            return data
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
+
+
+
