@@ -86,18 +86,55 @@ class Article:
             sql = 'SELECT * FROM xueya_articles WHERE a_id = %s' % aid
             self.cursor.execute(sql)
             data = self.cursor.fetchone()
+            self.update_article_readed_num(aid, 1)
             self.conn.commit()
-            # sql2 = 'SELECT c.* FROM xueya_comments as c, xueya_articles__comments as ac WHERE c.c_id = ac.ac_id ' \
-            #        'AND ac. a_id = %s' % aid
-            # self.cursor.execute(sql2)
-            # comments = self.cursor.fetchall()
-            # self.conn.commit()
-            # data['comments'] = comments
             return data
         except Exception as e:
             raise e
         finally:
             db_close()
 
+    def update_article_readed_num(self, aid, step):
+        try:
+            sql = 'UPDATE xueya_articles SET a_readed_num = a_readed_num + %s WHERE a_id = %s' % (step, aid)
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return 'Success'
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
 
+    def update_article_star_num(self, aid, step):
+        try:
+            sql = 'UPDATE xueya_articles SET a_star = a_star + %s WHERE a_id = %s AND a_star >= %s'
+            self.cursor.execute(sql, tuple([step, aid, 0 if step > 0 else 1]))
+            self.conn.commit()
+            return 'Success'
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
+
+    def update_article_shared_num(self, aid, step):
+        try:
+            sql = 'UPDATE xueya_articles SET a_shared_num = a_shared_num + %s WHERE a_id = %s AND a_shared_num >= %s'
+            self.cursor.execute(sql, list([step, aid, 0 if step > 0 else 1]))
+            self.conn.commit()
+            return 'Success'
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
+
+    def update_article_thumb_num(self, aid, step):
+        try:
+            sql = 'UPDATE xueya_articles SET a_thumb_num = a_thumb_num + %s WHERE a_id = %s AND a_thumb_num >= %s'
+            self.cursor.execute(sql, list([step, aid, 0 if step > 0 else 1]))
+            self.conn.commit()
+            return 'Success'
+        except Exception as e:
+            raise e
+        finally:
+            db_close()
 

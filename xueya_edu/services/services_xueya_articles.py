@@ -109,4 +109,26 @@ def set_comments(comments):
         raise e
 
 
+def update_star(aid, step):
+    try:
+        return article.update_article_star_num(aid, step)
+    except Exception as e:
+        raise e
+
+
+def update_article_shared(aid, step):
+    try:
+        return article.update_article_shared_num(aid, step)
+    except Exception as e:
+        raise e
+
+
+def update_article_thumb(aid, step):
+    try:
+        return article.update_article_thumb_num(aid, step)
+    except Exception as e:
+        raise e
+
+
+
 
